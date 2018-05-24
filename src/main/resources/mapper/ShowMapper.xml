@@ -1,0 +1,46 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xmu.middleware.mapper.ShowMapper">
+
+    <resultMap id="imageResultMap" type="ImageShare">
+        <id property="id" column="ID" />
+        <result property="userID" column="userID" />
+        <result property="image" column="image" />
+        <result property="category" column="category" />
+        <result property="shootTime" column="shootTime" />
+        <result property="cameraModel" column="cameraModel" />
+        <result property="cameraParam" column="cameraParam" />
+        <result property="description" column="description" />
+        <result property="releaseTime" column="releaseTime" />
+        <result property="loveNumber" column="loveNumber" />
+    </resultMap>
+
+    <resultMap id="invitationResultMap" type="Invitation">
+        <id property="id" column="ID" />
+        <result property="userID" column="userID" />
+        <result property="content" column="content" />
+        <result property="releaseTime" column="releaseTime" />
+        <result property="loveNumber" column="loveNumber" />
+    </resultMap>
+
+    <select id="getImageByImageId" parameterType="int" resultMap="imageResultMap">
+        select ID, userID, image, category, shootTime, cameraModel, cameraParam, description, releaseTime, loveNumber
+        from imageShare where ID = #{imageId}
+    </select>
+
+    <select id="getImagesByUserId" parameterType="int" resultMap="imageResultMap" >
+        select ID, userID, image, category, shootTime, cameraModel, cameraParam, description, releaseTime, loveNumber
+        from imageShare where ID = #{userId}
+    </select>
+
+    <select id="getInvitationByInvitationId" parameterType="int" resultMap="invitationResultMap">
+        select ID, userID, content, releaseTime, loveNumber
+        from invitation where ID = #{invitationId}
+    </select>
+
+    <select id="getInvitationsByUserId" parameterType="int" resultMap="invitationResultMap">
+        select ID, userID, content, releaseTime, loveNumber
+        from invitation where ID = #{userId}
+    </select>
+
+</mapper>

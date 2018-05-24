@@ -1,0 +1,41 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xmu.middleware.mapper.PostMapper">
+
+    <resultMap id="reviewResultMap" type="Review">
+        <id property="id" column="ID" />
+        <result property="category" column="category" />
+        <result property="objectId" column="obejctID" />
+        <result property="reviewerId" column="reviewerID" />
+        <result property="comment" column="comment" />
+        <result property="reviewTime" column="reviewTime" />
+    </resultMap>
+
+    <insert id="addImage" parameterType="ImageShare" useGeneratedKeys="true" keyProperty="ID">
+        insert into imageShare (userID, image, category, shootTime, cameraModel, cameraParam, description, releaseTime, loveNumber)
+        values (#{userID}, #{image}, #{category}, #{shootTime}, #{cameraModel}, #{cameraParam}, #{description}, #{releaseTime}, #{loveNumber})
+    </insert>
+
+    <insert id="addInvitation" parameterType="Invitation" useGeneratedKeys="true" keyProperty="ID">
+        insert into invitation (userID, content, releaseTime, loveNumber)
+        values (#{userID}, #{content}, #{releaseTime}, #{loveNumber})
+    </insert>
+
+    <update id="addLikeImage" parameterType="int" >
+        update imageShare set
+        loveNumber = #{number}
+        where ID = #{imageId}
+    </update>
+
+    <update id="addLikeInvitation" parameterType="int">
+        update invitation set
+        loveNumber = #{number}
+        where ID = #{invitationId}
+    </update>
+
+    <insert id="addCommentById" parameterType="Review" useGeneratedKeys="true" keyProperty="ID">
+        insert into review (category, obejctID, reviewerID, comment, reviewTime)
+        values (#{category}, #{obejctId}, #{reviewerId}, #{comment}, #{reviewTime})
+    </insert>
+
+</mapper>

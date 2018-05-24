@@ -1,0 +1,64 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xmu.middleware.mapper.UserMapper">
+
+    <resultMap id="userResultMap" type="User" >
+        <id property="id" column="ID" />
+        <result property="phone" column="phone" />
+        <result property="name" column="name" />
+        <result property="password" column="password" />
+        <result property="userImage" column="userImage" />
+    </resultMap>
+
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="ID">
+        insert into user (phone, `name`, password, userImage)
+        values (#{phone}, #{name}, #{password}, #{userImage})
+    </insert>
+
+    <select id="getUserById" parameterType="int" resultMap="userResultMap">
+        select ID, phone, `name`, password, userImage
+        from user where ID =#{userId}
+    </select>
+
+    <select id="getUserByPhone" parameterType="String" resultMap="userResultMap">
+        select ID, phone, `name`, password, userImage
+        from user where phone =#{phone}
+    </select>
+
+    <select id="getUserByName" parameterType="String" resultMap="userResultMap">
+        select ID, phone, `name`, password, userImage
+        from user where `name` =#{name}
+    </select>
+
+    <insert id="addFollow" parameterType="int" useGeneratedKeys="true" keyProperty="ID">
+        insert into relation (blogerID, fansID)
+        values (#{blogerId}, #{fansId})
+    </insert>
+
+    <select id="getUserIdByFansId" parameterType="int" resultMap="int">
+        select blogerID
+        from user where fansID =#{userId}
+    </select>
+
+    <select id="getFansIdByFollowedId" parameterType="int" resultMap="int">
+        select fansID
+        from user where blogerID =#{userId}
+    </select>
+
+    <select id="getFansByUserId" parameterType="java.util.List" resultMap="userResultMap">
+        select ID, phone, `name`, password, userImage
+        from user where ID in
+        <foreach collection="list" item="userId" index="index" open="(" close=")" separator=",">
+            #{userId}
+        </foreach>
+    </select>
+
+    <select id="getFollowersByUserId" parameterType="java.util.List" resultMap="userResultMap">
+        select ID, phone, `name`, password, userImage
+        from user where ID in
+        <foreach collection="list" item="userId" index="index" open="(" close=")" separator=",">
+            #{userId}
+        </foreach>
+    </select>
+
+</mapper>
