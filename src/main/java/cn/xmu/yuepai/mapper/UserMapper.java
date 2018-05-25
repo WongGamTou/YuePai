@@ -63,12 +63,12 @@ public interface UserMapper {
      * @param userId
      * @return
      */
-    List<User> getFansByUserId(int userId);
+    List<User> getFansByUserId(List<Integer> userId);
 
     /**
      * 获取用户的关注
      * @param userId
      * @return
      */
-    List<User> getFollowersByUserId(int userId);
+    List<User> getFollowersByUserId(List<Integer> userId);
 }
