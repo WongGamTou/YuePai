@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.jms.*;
 import javax.naming.NamingException;
+import javax.xml.soap.Text;
 
 @RestController
 public class ActiveMqController {
@@ -47,10 +48,10 @@ public class ActiveMqController {
             //通过连接工厂获取连接
             connection = connectionFactory.createConnection();
             //创建session
-            session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
+            session = connection.createSession(Boolean.TRUE, Session.CLIENT_ACKNOWLEDGE);
             //创建一个名称为zh-topic的消息队列(生产者生成的消息放在哪)
             //String d = "topic-" + msg;
-            destination = session.createTopic("zh-topic");
+            destination = session.createTopic("dwy-topic");
             //创建消息生产者
             messageProducer = session.createProducer(destination);
             messageProducer.setDeliveryMode(DeliveryMode.PERSISTENT);
@@ -99,37 +100,47 @@ public class ActiveMqController {
                 //通过连接工厂获取连接
                 connection = connectionFactory.createConnection();
                 //System.out.println(2);
-                connection.setClientID("winner_0715");
+                connection.setClientID("t1");
+                //启动连接
+                 connection.start();
                 //System.out.println(3);
                 //创建session
-                session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
+                session = connection.createSession(Boolean.TRUE, Session.CLIENT_ACKNOWLEDGE);
                 //System.out.println(4);
 
                 //生产者将消息发送到zh-topic，所以消费者要到zh-topic去取
                 //String to = "topic-" + i;
-                topic = session.createTopic("zh-topic");
+                topic = session.createTopic("dwy-topic");
                 //System.out.println(5);
                 //创建消息消费者
-                TopicSubscriber consumer = session.createDurableSubscriber(topic, "t1");
+                TopicSubscriber consumer = session.createDurableSubscriber((Topic)topic, "t1");
                 //System.out.println(6);
-
-                //启动连接
-                connection.start();
-                //System.out.println(7);
-
-                Message message = consumer.receive();
-                //System.out.println(8);
-                while (message != null) {
-                    TextMessage txtMsg = (TextMessage) message;
-                    System.out.println("收到消息：" + txtMsg.getText());
-                    //没这句有错
-                    message = consumer.receive(5000);
-                    //System.out.println(9);
-                }
+                //设置监听器
+                consumer.setMessageListener(new MessageListener(){
+                    @Override
+                    public void onMessage(Message message) {
+                        if(message instanceof TextMessage){
+                            try{
+                                System.out.println("======》收到消息："+((TextMessage) message).getText());
+                                message.acknowledge();
+                            } catch (JMSException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+//                Message message = consumer.receive();
+//                //System.out.println(8);
+//                while (message != null) {
+//                    TextMessage txtMsg = (TextMessage) message;
+//                    System.out.println("收到消息：" + txtMsg.getText());
+//                    //没这句有错
+//                    message = consumer.receive(5000);
+//                    //System.out.println(9);
+//                }
                 session.commit();
                 session.close();
                 connection.close();
-            //}
         } catch (JMSException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,7 @@ public class YuepaiApplication {
 
 	@Bean
 	public Topic topic(){
-		return new ActiveMQTopic("zh-topic");
+		return new ActiveMQTopic("dwy-topic");
 	}
 
 	public static void main(String[] args) {
