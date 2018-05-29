@@ -93,54 +93,58 @@ public class ActiveMqController {
 
         try {
             //for (int i=1; i<=2; i++) {
-                System.out.println("建立连接！");
                 //实例化连接工厂(连接到ActiveMQ服务器)
                 connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEURL);
-                //System.out.println(1);
                 //通过连接工厂获取连接
                 connection = connectionFactory.createConnection();
-                //System.out.println(2);
-                connection.setClientID("t1");
+                //connection.setClientID("t1");
                 //启动连接
-                 connection.start();
-                //System.out.println(3);
+                connection.start();
                 //创建session
-                session = connection.createSession(Boolean.TRUE, Session.CLIENT_ACKNOWLEDGE);
-                //System.out.println(4);
+                session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
                 //生产者将消息发送到zh-topic，所以消费者要到zh-topic去取
                 //String to = "topic-" + i;
-                topic = session.createTopic("dwy-topic");
-                //System.out.println(5);
+                //topic = session.createTopic("dwy-topic");
+
+                destination = session.createTopic("dwy-topic");
+
                 //创建消息消费者
-                TopicSubscriber consumer = session.createDurableSubscriber((Topic)topic, "t1");
-                //System.out.println(6);
-                //设置监听器
-                consumer.setMessageListener(new MessageListener(){
-                    @Override
-                    public void onMessage(Message message) {
-                        if(message instanceof TextMessage){
-                            try{
-                                System.out.println("======》收到消息："+((TextMessage) message).getText());
-                                message.acknowledge();
-                            } catch (JMSException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                MessageConsumer consumer = session.createConsumer(destination);
+
+                consumer.setMessageListener(message -> {
+                    try {
+                        System.out.println("======》收到消息："+((TextMessage) message).getText());
+                    } catch (JMSException e) {
+                        e.printStackTrace();
                     }
                 });
+
+
+                //设置监听器
+//                consumer.setMessageListener(new MessageListener(){
+//                    @Override
+//                    public void onMessage(Message message) {
+//                        if(message instanceof TextMessage){
+//                            try{
+//                                System.out.println("======》收到消息："+((TextMessage) message).getText());
+//                                message.acknowledge();
+//                            } catch (JMSException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//                });
 //                Message message = consumer.receive();
-//                //System.out.println(8);
 //                while (message != null) {
 //                    TextMessage txtMsg = (TextMessage) message;
 //                    System.out.println("收到消息：" + txtMsg.getText());
 //                    //没这句有错
 //                    message = consumer.receive(5000);
-//                    //System.out.println(9);
 //                }
-                session.commit();
-                session.close();
-                connection.close();
+//                session.commit();
+//                session.close();
+//                connection.close();
         } catch (JMSException e) {
             e.printStackTrace();
         }
