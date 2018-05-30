@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.*;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -31,6 +30,17 @@ public class UserController {
         return null;
     }
 
+    /**
+     * 添加关注
+     * @param userID
+     * @param otherUserID
+     * @return
+     */
+    @RequestMapping(value = "/{userID}/adduser/{otheruserID}", method = POST)
+    public void addAttention(@PathVariable("userID") int userID,
+                             @PathVariable("otherUserID") int otherUserID) {
+
+    }
     @RequestMapping(value = "/{userID}/otheruser/{otherUserID}/imageshare", method = GET)
     public List<ImageShare> getOtherUserImage(@PathVariable("userID") int userID,
                                               @PathVariable("otherUserID") int otherUserID) {
