@@ -58,7 +58,7 @@ public class UserController {
         return null;
     }
 
-    @RequestMapping(value = "/{userID}/homepage/imageshare", method = GET)
+    @RequestMapping(value = "/{userID}/homepage/invitation", method = GET)
     public List<Invitation> getMyInvitation(@PathVariable("userID") int userID) {
         return null;
     }

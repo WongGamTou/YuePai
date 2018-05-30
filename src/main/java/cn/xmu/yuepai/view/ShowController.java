@@ -13,20 +13,33 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class ShowController {
+
+
+    @RequestMapping(value = "/{userID}/imageshare/recommand", method = GET)
+    public List<ImageShare> getRecommandImageShare(@PathVariable("userID") int userID){
+        return null;
+    }
+
+    @RequestMapping(value = "/{userID}/imageshare/attention", method = GET)
+    public List<ImageShare> getAttentionImageShare(@PathVariable("userID") int userID){
+        return null;
+    }
+
     @RequestMapping(value = "/{userID}/imageshare/{imageshreaID}/details", method = GET)
-    public ImageShare getImageShare(@PathVariable("userID") int userID,
+    public ImageShare getImageShareDatails(@PathVariable("userID") int userID,
                                     @PathVariable("imageshreaID") int imageshreaID){
         return null;
     }
 
-    @RequestMapping(value = "/{userID}/imageshare/{invitationID}/details", method = GET)
-    public Invitation getInvitation(@PathVariable("userID") int userID,
+    @RequestMapping(value = "/{userID}/invitation/recommand", method = GET)
+    public List<Invitation> getRecommandInvitation(@PathVariable("userID") int userID,
                                     @PathVariable("invitationID") int invitationID){
         return null;
     }
 
-    @RequestMapping(value = "{userID}/imageshare/attention",method = GET)
-    public List<ImageShare> getAttentionImage() {
+    @RequestMapping(value = "/{userID}/invitation/attention", method = GET)
+    public List<Invitation> getAttentionInvitation(@PathVariable("userID") int userID,
+                                          @PathVariable("invitationID") int invitationID){
         return null;
     }
 

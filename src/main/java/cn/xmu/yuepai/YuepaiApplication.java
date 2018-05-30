@@ -13,10 +13,10 @@ import javax.jms.Topic;
 @EnableJms
 public class YuepaiApplication {
 
-	@Bean
-	public Topic topic(){
-		return new ActiveMQTopic("dwy-topic");
-	}
+//	@Bean
+//	public Topic topic(){
+//		return new ActiveMQTopic("dwy-topic");
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(YuepaiApplication.class, args);
