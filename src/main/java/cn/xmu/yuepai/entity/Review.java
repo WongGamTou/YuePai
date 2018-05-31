@@ -7,17 +7,18 @@ public class Review {
     private int category;
     private int objectID;
     private int reviewerID;
+    private String comment;
     private Date reviewTime;
-    private String reviewContent;
 
+    public Review(){}
     public Review(int id, int category, int objectID,
-                  int reviewerID, Date reviewTime, String reviewContent) {
+                  int reviewerID,String comment,Date reviewTime) {
         this.id = id;
         this.category = category;
         this.objectID = objectID;
         this.reviewerID = reviewerID;
         this.reviewTime = reviewTime;
-        this.reviewContent = reviewContent;
+        this.comment = comment;
     }
 
     public int getId() {
@@ -60,11 +61,11 @@ public class Review {
         this.reviewTime = reviewTime;
     }
 
-    public String getReviewContent() {
-        return reviewContent;
+    public String getComment() {
+        return comment;
     }
 
-    public void setReviewContent(String reviewContent) {
-        this.reviewContent = reviewContent;
+    public void setComment(String comment) {
+        this.comment =comment;
     }
 }

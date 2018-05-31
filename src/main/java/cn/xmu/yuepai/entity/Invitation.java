@@ -1,14 +1,16 @@
 package cn.xmu.yuepai.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Invitation {
+public class Invitation implements Serializable{
     private int id;
     private int userID;
     private String content;
     private Date releaseTime;
     private int loveNumber;
 
+    public Invitation(){}
     public Invitation(int id, int userID, String content,
                       Date releaseTime, int loveNumber) {
         this.id = id;
@@ -17,7 +19,6 @@ public class Invitation {
         this.releaseTime = releaseTime;
         this.loveNumber = loveNumber;
     }
-
     public int getId() {
         return id;
     }

@@ -1,22 +1,20 @@
 package cn.xmu.yuepai.service;
 
+import cn.xmu.yuepai.entity.User;
+
 public interface LoginService {
 
     /**
      * 用户登陆
-     * @param userID
+     * @param name
      * @param password
      */
-    int login(int userID, String password);
+    int login(String name, String password);
 
     /**
      * 注册用户
-     * @param id
-     * @param phone
-     * @param name
-     * @param password
-     * @param userImage
+     * @param user
      */
-    int register(int id, String phone, String name, String password, String userImage);
+    int register(User user);
 
 }
