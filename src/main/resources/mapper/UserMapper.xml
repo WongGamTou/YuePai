@@ -3,14 +3,14 @@
 <mapper namespace="cn.xmu.yuepai.mapper.UserMapper">
 
     <resultMap id="userResultMap" type="User" >
-        <id property="id" column="ID" />
+        <id property="id" column="id" />
         <result property="phone" column="phone" />
         <result property="name" column="name" />
         <result property="password" column="password" />
         <result property="userImage" column="userImage" />
     </resultMap>
 
-    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="ID">
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         insert into user (phone, `name`, password, userImage)
         values (#{phone}, #{name}, #{password}, #{userImage})
     </insert>
@@ -30,7 +30,7 @@
         from user where `name` =#{name}
     </select>
 
-    <insert id="addFollow" parameterType="int" useGeneratedKeys="true" keyProperty="ID">
+    <insert id="addFollow" parameterType="int" useGeneratedKeys="true" keyProperty="id">
         insert into relation (blogerID, fansID)
         values (#{blogerId}, #{fansId})
     </insert>
