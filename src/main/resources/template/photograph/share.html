@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>摄影分享·约拍吧</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css">
+</head>
+<body>
+<nav class="navbar navbar-fixed-top bs-docs-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./publish.html"><img class="logo" src="../../static/img/logo.png"></a>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="搜索用户...">
+                <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-brand" href="./share.html">
+                    <img class="navbar-icons" src="../../static/img/explore.png" alt="...">
+                </a></li>
+                <li><a class="navbar-brand" href="./photo.html">
+                    <img class="navbar-icons" src="../../static/img/photo.png" alt="...">
+                </a></li>
+                <li class="active"><a class="navbar-brand" href="../profile/profile.html">
+                    <img class="navbar-icons" src="../../static/img/user.png" alt="...">
+                </a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <!-- Nav tabs -->
+    <div class="nav-tabslist">
+        <ul class="nav nav-pills center-block two-pills" role="tablist">
+            <li role="presentation" class="active"><a href="#recommend" data-toggle="tab">推荐</a></li>
+            <li role="presentation"><a href="#follow" data-toggle="tab">关注<span class="badge">3</span></a></li>
+        </ul>
+    </div>
+    <!-- Tab panes -->
+    <div class="tab-content col-lg-12">
+        <div role="tabpanel" class="tab-pane fade in active" id="recommend">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img1.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img2.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img3.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img4.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img5.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img6.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="follow">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img1.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img2.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img3.png" alt="...">
+                        <div class="caption">
+                            <h3>匪我思存</h3>
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog share-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <img class="photograph" src="../../static/img/img2.png" alt="...">
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <img class="img-circle" src="../../static/img/img3.png"
+                                         alt="Generic placeholder image">
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="name">匪我思存</p>
+                                    <span>2</span><span>名关注者</span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-default attention">已关注</button>
+                                </div>
+                            </div>
+                            <div class="row modal-icons">
+                                <div class="col-lg-6">
+                                    <span class="card-icon left like">&#10084;</span>
+                                    <span>126</span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <embed src="../../static/img/comment.svg" width="20" height="20"
+                                           type="image/svg+xml"/>
+                                    <span>243</span>
+                                </div>
+
+                            </div>
+                            <dl class="photoDetail">
+                                <dt>
+                                    图片类型
+                                </dt>
+                                <dd>
+                                    人像
+                                </dd>
+                                <dt>
+                                    拍摄时间
+                                </dt>
+                                <dd>
+                                    2018/5/31
+                                </dd>
+                                <dt>
+                                    相机型号
+                                </dt>
+                                <dd>
+                                    Sony A6000
+                                </dd>
+                                <dt>
+                                    拍摄参数
+                                </dt>
+                                <dd>
+                                    F1.8 快门1/8 ISO1600 balabala...
+                                </dd>
+                                <dt>
+                                    图片描述
+                                </dt>
+                                <dd>
+                                    天气好好，出门拍个照balabala...
+                                </dd>
+                            </dl>
+
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+</div> <!-- /container -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $(".like").click(function () {
+            $(this).toggleClass('cs');
+        })
+    })
+
+    $(function () {
+        // tab() 显示该tab click() 执行绑定的异步函数。因此本行应在所有异步设置之后(.click(func) 之后)
+        $('.nav-pills a[href=\"' + window.location.hash + "\"]").tab('show').click();
+
+        // 当#tab发生变化时的反应
+        window.onhashchange = function () {
+            $('.nav-tabs a[href=\"' + window.location.hash + "\"]").tab('show');
+        };
+    })
+</script>
+
+
+</body>
+</html>

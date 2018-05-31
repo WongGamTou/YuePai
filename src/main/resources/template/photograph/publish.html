@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>发布·约拍吧</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css">
+</head>
+<body>
+<nav class="navbar navbar-fixed-top bs-docs-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img class="logo" src="../../static/img/logo.png"></a>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="搜索用户...">
+                <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-brand" href="./share.html">
+                    <img class="navbar-icons" src="../../static/img/explore.png" alt="...">
+                </a></li>
+                <li><a class="navbar-brand" href="./photo.html">
+                    <img class="navbar-icons" src="../../static/img/photo.png" alt="...">
+                </a></li>
+                <li class="active"><a class="navbar-brand" href="../profile/profile.html">
+                    <img class="navbar-icons" src="../../static/img/user.png" alt="...">
+                </a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container publish">
+    <div class="panel panel-primary publish-inline">
+        <div class="panel-heading">摄影分享</div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputImage" class="col-sm-2 control-label">上传图片</label>
+                    <div class="col-sm-10">
+                        <input type="file" id="inputImage">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputImageType" class="col-sm-2 control-label">图片类型</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputImageType">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photoTime" class="col-sm-2 control-label">拍摄时间</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="photoTime">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cameraModel" class="col-sm-2 control-label">相机型号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="cameraModel">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="parameter" class="col-sm-2 control-label">拍摄参数</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="parameter">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-sm-2 control-label">图片描述</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="3" id="description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-primary publish-inline">
+        <div class="panel-heading">发起约拍</div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="detail" class="col-sm-2 control-label">约拍详情</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="10" id="detail"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div> <!-- /container -->
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

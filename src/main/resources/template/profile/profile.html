@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人主页·约拍吧</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css">
+</head>
+<body>
+<nav class="navbar navbar-fixed-top bs-docs-nav">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../photograph/publish.html"><img class="logo" src="../../static/img/logo.png"></a>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="搜索用户...">
+                <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-brand" href="../photograph/share.html">
+                    <img class="navbar-icons" src="../../static/img/explore.png" alt="...">
+                </a></li>
+                <li><a class="navbar-brand" href="../photograph/photo.html">
+                    <img class="navbar-icons" src="../../static/img/photo.png" alt="...">
+                </a></li>
+                <li class="active"><a class="navbar-brand" href="../profile/profile.html">
+                    <img class="navbar-icons" src="../../static/img/user.png" alt="...">
+                </a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="row clearfix">
+                <div class="col-md-2 column">
+                    <img class="img-circle" alt="140x140" src="../../static/img/img4.png"/>
+                </div>
+                <div class="col-md-6 column">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+          <span class="profile-name">
+            匪我思存
+          </span>
+                            <img class="navbar-icons settings" src="../../static/img/settings.png" alt="...">
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-4 column profile-info">
+                            <span>2</span>
+                            <span>动态</span>
+                        </div>
+                        <div class="col-md-4 column profile-info">
+                            <span>2</span>
+                            <span>正在关注</span>
+                        </div>
+                        <div class="col-md-4 column profile-info" data-toggle="modal" data-target="#myModal">
+                            <span>2</span>
+                            <span>关注者</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 column">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p nav-tabslist">
+        <ul class="nav nav-pills center-block three-pills" role="tablist">
+            <li role="presentation" class="active"><a href="#recommend" data-toggle="tab">分享</a></li>
+            <li role="presentation"><a href="#follow" data-toggle="tab">约拍</a></li>
+            <li role="presentation"><a href="#notice" data-toggle="tab">通知</a></li>
+        </ul>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog profile-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">我关注的人</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="img-circle" alt="140x140" src="../../static/img/img2.png"/>
+                            <span class="panel-name">
+                  匪我思存
+                </span>
+                            <button type="button" class="btn btn-default btn-sm">已关注</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="img-circle" alt="140x140" src="../../static/img/img2.png"/>
+                            <span class="panel-name">
+                  匪我思存
+                </span>
+                            <button type="button" class="btn btn-default btn-sm">已关注</button>
+                        </div>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </div>
+
+
+    <div class="tab-content col-lg-12">
+        <div role="tabpanel" class="tab-pane fade in active" id="recommend">
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img1.png" alt="...">
+                        <div class="caption">
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img2.png" alt="...">
+                        <div class="caption">
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img3.png" alt="...">
+                        <div class="caption">
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img1.png" alt="...">
+                        <div class="caption">
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img2.png" alt="...">
+                        <div class="caption">
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img3.png" alt="...">
+                        <div class="caption">
+                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
+                            <p class="card-icon like">&#10084;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--tabpanel-->
+        <div role="tabpanel" class="tab-pane" id="follow">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <div class="row clearfix">
+                                <div class="col-md-1 column">
+                                    <img class="img-circle" alt="140x140" src="../../static/img/img2.png"/>
+                                </div>
+                                <div class="col-md-2 column">
+                                    <p class="panel-name">
+                                        匪我思存
+                                    </p>
+                                    <span class="panel-time">2天前</span>
+                                </div>
+                                <div class="col-md-9 column">
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-1 column">
+                                </div>
+                                <div class="col-md-11 column">
+                                    <p class="panel-content">
+                                        <em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong>
+                                        编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在
+                                        <small>Ruby</small>
+                                        社区中。是一个分布式的版本控制系统
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row clearfix">
+                        <div class="col-md-4 column footer-icons">
+                            <img class="navbar-icons" src="../../static/img/share.png" alt="...">
+                            转发
+                        </div>
+                        <div class="col-md-4 column footer-icons">
+                            <img class="navbar-icons" src="../../static/img/comment.png" alt="...">
+                            评论
+                        </div>
+                        <div class="col-md-4 column footer-icons">
+                            <span class="card-icon left like">&#10084;</span>
+                            <span>126</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div role="tabpanel" class="tab-pane" id="notice">
+            <div class="alert alert-info" role="alert">您关注的<strong>匪我思存</strong>发布了新的<strong>约拍</strong>“有没有人这周末出去街拍啊”
+            </div>
+            <div class="alert alert-success" role="alert">您关注的<strong>匪我思存</strong>分享了新的<strong>图片</strong>“好可爱的小猫咪啊”
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $(".like").click(function () {
+            $(this).toggleClass('cs');
+        })
+    })
+
+    $(function () {
+        // tab() 显示该tab click() 执行绑定的异步函数。因此本行应在所有异步设置之后(.click(func) 之后)
+        $('.nav-pills a[href=\"' + window.location.hash + "\"]").tab('show').click();
+
+        // 当#tab发生变化时的反应
+        window.onhashchange = function () {
+            $('.nav-tabs a[href=\"' + window.location.hash + "\"]").tab('show');
+        };
+    })
+</script>
+
+
+</body>
+</html>

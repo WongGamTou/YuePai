@@ -1,0 +1,221 @@
+body {
+    min-height: 1500px;
+    padding-top: 70px;
+    background-color: #fafafa;
+}
+
+.settings {
+    margin-left: 20px;
+}
+
+.profile-name {
+    display: inline-block;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.profile-info span {
+    font-size: 18px;
+}
+
+.navbar-nav li {
+    margin-left: 15px;
+}
+
+.navbar-icons {
+    width: 25px;
+}
+
+.panel .img-circle {
+    width: 50px;
+}
+
+.panel-name {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.panel-time {
+    font-size: 12px;
+}
+
+.panel-content {
+    margin-top: 10px;
+}
+
+.footer-icons {
+    line-height: 36px;
+}
+
+.navbar-brand {
+    line-height: 40px;
+    padding: 5px 15px;
+    margin-left: 15px;
+}
+
+.navbar-fixed-top {
+    border-bottom: 1px solid #dedede;
+}
+
+.input-group {
+    margin-top: 8px;
+}
+
+.logo {
+    height: 40px;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input {
+    margin-bottom: 20px;
+}
+
+.form-inline {
+    margin-top: 8px;
+}
+
+.icon {
+    display: inline-block;
+}
+
+embed {
+    display: inline-block;
+}
+
+.bs-docs-nav {
+    background-color: #fff;
+}
+
+.publish {
+    display: flex;
+}
+
+.publish-inline {
+    margin: 0 3px;
+    flex: 1;
+}
+
+.form-signin {
+    background-color: #fff;
+    padding: 30px 50px;
+    max-width: 400px;
+    margin-top: 40px;
+}
+
+.like {
+    margin: -5px;
+    padding: 0;
+    text-align: right;
+    font-size: 30px;
+    color: #337ab7;
+    cursor: pointer;
+}
+
+.cs {
+    color: #ccc;
+}
+
+.share-dialog {
+    width: 80%;
+    height: 600px;
+}
+
+.profile-dialog {
+    width: 30%;
+    height: 600px;
+}
+
+.profile-dialog img {
+    display: inline-block;
+    width: 10%;
+    margin-bottom: 10px;
+}
+
+.profile-dialog button {
+    margin-left: 50%;
+}
+
+.modal-body .photograph {
+    width: 95%;
+
+}
+
+.img-circle {
+    width: 100%;
+}
+
+.left {
+    text-align: left;
+    margin: 0;
+    font-size: 25px;
+}
+
+.modal-icons {
+    margin: 10px 0 20px;
+}
+
+.modal-icons .col-lg-6 {
+    line-height: 30px;
+}
+
+.modal-icons embed {
+    margin-top: 4px;
+}
+
+.photoDetail dt {
+    margin-bottom: 5px;
+}
+
+.photoDetail dd {
+    margin-bottom: 10px;
+}
+
+.modal-body .name {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.nav-tabslist {
+    margin: 0px auto 10px;
+}
+
+.two-pills {
+    width: 160px;
+}
+
+.three-pills {
+    width: 240px;
+}
+
+.attention {
+    margin-top: 15px;
+}
