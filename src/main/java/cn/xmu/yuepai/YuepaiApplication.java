@@ -9,7 +9,7 @@ import org.springframework.jms.annotation.EnableJms;
 
 import javax.jms.Topic;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 @EnableJms
 public class YuepaiApplication {
 
