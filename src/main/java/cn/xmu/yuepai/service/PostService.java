@@ -40,5 +40,5 @@ public interface PostService {
      * @param comment
      * @param reviewTime
      */
-    int addCommentByImageId(int category, int objectId, int reviewerId, String comment, Date reviewTime);
+    int addCommentById(int category, int objectId, int reviewerId, String comment, Date reviewTime);
 }

@@ -29,7 +29,12 @@ public class PostServiceImpl implements PostService {
         imageShare.setReleaseTime(nowDate);
         imageShare.setLoveNumber(0);
         int i=postMapper.addImage(imageShare);
-        return i;
+        if(i>0){
+            return imageShare.getId();
+        }else
+        {
+            return -1;
+        }
     }
 
     @Override
@@ -40,7 +45,11 @@ public class PostServiceImpl implements PostService {
         invitation.setReleaseTime(nowDate);
         invitation.setLoveNumber(0);
         int i=postMapper.addInvitation(invitation);
-        return i;
+        if(i>0) {
+            return invitation.getId();
+        }else{
+            return -1;
+        }
     }
 
     @Override
@@ -58,8 +67,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public int addCommentByImageId(int category, int objectId, int reviewerId, String comment, Date reviewTime) {
-        Review review = new Review(0, category, objectId, reviewerId, reviewTime, comment);
+    public int addCommentById(int category, int objectID, int reviewerId, String comment, Date reviewTime) {
+        Review review = new Review(0, category, objectID, reviewerId, comment, reviewTime);
         return postMapper.addCommentById(review);
     }
 }

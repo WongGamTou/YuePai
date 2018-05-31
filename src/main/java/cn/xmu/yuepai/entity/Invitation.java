@@ -10,6 +10,7 @@ public class Invitation implements Serializable{
     private Date releaseTime;
     private int loveNumber;
 
+    public Invitation(){}
     public Invitation(int id, int userID, String content,
                       Date releaseTime, int loveNumber) {
         this.id = id;
@@ -18,7 +19,6 @@ public class Invitation implements Serializable{
         this.releaseTime = releaseTime;
         this.loveNumber = loveNumber;
     }
-
     public int getId() {
         return id;
     }

@@ -35,12 +35,12 @@
         values (#{blogerId}, #{fansId})
     </insert>
 
-    <select id="getUserIdByFansId" parameterType="int" resultMap="int">
+    <select id="getUserIdByFansId" parameterType="int" resultType="int">
         select blogerID
         from user where fansID =#{userId}
     </select>
 
-    <select id="getFansIdByFollowedId" parameterType="int" resultMap="int">
+    <select id="getFansIdByFollowedId" parameterType="int" resultType="int">
         select fansID
         from user where blogerID =#{userId}
     </select>
