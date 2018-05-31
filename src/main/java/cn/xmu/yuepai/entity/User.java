@@ -1,5 +1,7 @@
 package cn.xmu.yuepai.entity;
 
+import java.util.Map;
+
 public class User {
     private int id;
     private String phone;
@@ -14,6 +16,14 @@ public class User {
         this.name = name;
         this.password = password;
         this.userImage = userImage;
+    }
+
+    public User(Map<String,Object> jsonUser) {
+        this.id = 0;
+        this.phone =(String)(jsonUser.get("phone"));
+        this.name = (String)(jsonUser.get("name"));
+        this.password = (String)(jsonUser.get("password"));
+        this.userImage = (String)(jsonUser.get("userImage"));
     }
 
     public int getId() {
