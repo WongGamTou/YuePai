@@ -9,6 +9,8 @@ import cn.xmu.yuepai.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -21,12 +23,24 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public int addImage(ImageShare imageShare) {
-        return 0;
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        ParsePosition pos=new ParsePosition(0);
+        Date nowDate=df.parse(df.format(System.currentTimeMillis()),pos);
+        imageShare.setReleaseTime(nowDate);
+        imageShare.setLoveNumber(0);
+        int i=postMapper.addImage(imageShare);
+        return i;
     }
 
     @Override
     public int addInvitation(Invitation invitation) {
-        return 0;
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        ParsePosition pos=new ParsePosition(0);
+        Date nowDate=df.parse(df.format(System.currentTimeMillis()),pos);
+        invitation.setReleaseTime(nowDate);
+        invitation.setLoveNumber(0);
+        int i=postMapper.addInvitation(invitation);
+        return i;
     }
 
     @Override

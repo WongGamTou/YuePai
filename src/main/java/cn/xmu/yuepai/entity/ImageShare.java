@@ -1,8 +1,10 @@
 package cn.xmu.yuepai.entity;
 
+import java.awt.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class ImageShare {
+public class ImageShare implements Serializable{
     private int id;
     private int userID;
     private String image;
@@ -14,6 +16,7 @@ public class ImageShare {
     private Date releaseTime;
     private int loveNumber;
 
+    public ImageShare(){}
     public ImageShare(int id, int userID, String image, String category,
                       Date shootTime, String cameraModel, String cameraParam,
                       String description, Date releaseTime, int loveNumber) {
@@ -27,6 +30,17 @@ public class ImageShare {
         this.description = description;
         this.releaseTime = releaseTime;
         this.loveNumber = loveNumber;
+    }
+
+    public ImageShare(String image, String category,
+                      Date shootTime, String cameraModel, String cameraParam,
+                      String description){
+        this.image = image;
+        this.category = category;
+        this.shootTime = shootTime;
+        this.cameraModel = cameraModel;
+        this.cameraParam = cameraParam;
+        this.description = description;
     }
 
     public int getId() {

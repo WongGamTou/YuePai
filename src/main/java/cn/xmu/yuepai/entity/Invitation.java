@@ -1,8 +1,9 @@
 package cn.xmu.yuepai.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Invitation {
+public class Invitation implements Serializable{
     private int id;
     private int userID;
     private String content;

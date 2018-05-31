@@ -1,6 +1,5 @@
 package cn.xmu.yuepai.view;
 
-import cn.xmu.yuepai.service.ProductService;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.jms.*;
 import javax.naming.NamingException;
-import javax.xml.soap.Text;
 
 @RestController
 public class ActiveMqController {
@@ -28,8 +26,6 @@ public class ActiveMqController {
     @Autowired
     private ConnectionFactory connectionFactory;
 
-//    @Autowired
-//    private ProductService productService;
 
     @RequestMapping("/topic/{msg}")
     public void sendTopic(@PathVariable("msg") String msg) {
