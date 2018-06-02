@@ -52,7 +52,6 @@ public class PublishController {
     @RequestMapping(value = "/{userID}/imageshare/publish", method = POST)
     public ImageShare publishImageShare(@PathVariable("userID") int userID,@RequestBody ImageShare imageShare){
         imageShare.setUserID(userID);
-        System.out.println("userID："+imageShare.getUserID());
         System.out.println("image："+imageShare.getImage());
         System.out.println("shootTime："+imageShare.getShootTime());
         System.out.println("description："+imageShare.getDescription());
@@ -84,7 +83,7 @@ public class PublishController {
             ObjectMessage message=session.createObjectMessage();
             message.setObject(newImageShare);
             messageProducer.send(message);
-
+            System.out.println("摄影消息"+message.toString());
             System.out.println("发送摄影图片消息的时间===》"+newImageShare.getReleaseTime());
             session.commit();
         }catch(Exception e){
@@ -110,7 +109,6 @@ public class PublishController {
     @RequestMapping(value = "/{userID}/invitation/publish", method = POST)
     public Invitation publishInvitation(@PathVariable("userID") int userID,@RequestBody Invitation invitation){
         invitation.setUserID(userID);
-        System.out.println("userID:"+invitation.getUserID());
         int newID=postService.addInvitation(invitation);
         System.out.println("插入数据库后invitationID："+newID);
         Invitation newInvitation=showService.getInvitationByInvitationId(newID);

@@ -71,7 +71,7 @@ public class UserController {
                 Topic topicInvitation = session.createTopic(follows.get(i).getName() + "Invitation");
 
                 //创建消息消费者
-                MessageConsumer consumerImage = session.createDurableConsumer(topicImage, (String)user_temp.get("userName") + "Image" + i);
+                MessageConsumer consumerImage = session.createDurableConsumer(topicImage, (String)user_temp.get("userName") + i);
 
                 MessageConsumer consumerInvitation = session.createDurableConsumer(topicInvitation, (String)user_temp.get("userName") + "Invitation" + i);
 

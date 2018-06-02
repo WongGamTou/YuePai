@@ -16,7 +16,7 @@
     </resultMap>
 
     <resultMap id="invitationResultMap" type="Invitation">
-        <id property="id" column="ID" />
+        <id property="id" column="id" />
         <result property="userID" column="userID" />
         <result property="content" column="content" />
         <result property="releaseTime" column="releaseTime" />

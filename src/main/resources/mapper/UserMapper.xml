@@ -37,12 +37,12 @@
 
     <select id="getUserIdByFansId" parameterType="int" resultType="int">
         select blogerID
-        from user where fansID =#{userId}
+        from relation where fansID =#{userId}
     </select>
 
     <select id="getFansIdByFollowedId" parameterType="int" resultType="int">
         select fansID
-        from user where blogerID =#{userId}
+        from relation where blogerID =#{userId}
     </select>
 
     <select id="getFansByUserId" parameterType="java.util.List" resultMap="userResultMap">

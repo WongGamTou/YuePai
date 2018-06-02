@@ -54,8 +54,7 @@ public class ShowController {
     }
 
     @RequestMapping(value = "/{userID}/invitation/attention", method = GET)
-    public List<Invitation> getAttentionInvitation(@PathVariable("userID") int userID,
-                                          @PathVariable("invitationID") int invitationID){
+    public List<Invitation> getAttentionInvitation(@PathVariable("userID") int userID){
         List<User> follows = userService.getFollowersByUserId(userID);
         List<Invitation> invitations = new ArrayList<Invitation>();
         for (User user : follows) {
