@@ -64,16 +64,28 @@ public class UserController {
                 Connection connection = connectionFactory.createConnection();       //通过连接工厂获取连接
                 connection.setClientID((String)user_temp.get("userName") + i);
                 connection.start();        //启动连接
+
                 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);//创建session
 
-                Topic topic = session.createTopic(follows.get(i).getName());
+                Topic topicImage = session.createTopic(follows.get(i).getName() + "Image");
+                Topic topicInvitation = session.createTopic(follows.get(i).getName() + "Invitation");
 
                 //创建消息消费者
-                MessageConsumer consumer = session.createDurableConsumer(topic, (String)user_temp.get("userName") + i);
+                MessageConsumer consumerImage = session.createDurableConsumer(topicImage, (String)user_temp.get("userName") + "Image" + i);
 
-                consumer.setMessageListener(message -> {
+                MessageConsumer consumerInvitation = session.createDurableConsumer(topicInvitation, (String)user_temp.get("userName") + "Invitation" + i);
+
+                consumerImage.setMessageListener(message -> {
                     try {
-                        System.out.println("======》收到消息："+((TextMessage) message).getText());
+                        System.out.println("======》收到消息："+((ObjectMessage) message).getObject().toString());
+                    } catch (JMSException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                consumerInvitation.setMessageListener(message -> {
+                    try {
+                        System.out.println("======》收到消息："+((ObjectMessage) message).getObject().toString());
                     } catch (JMSException e) {
                         e.printStackTrace();
                     }

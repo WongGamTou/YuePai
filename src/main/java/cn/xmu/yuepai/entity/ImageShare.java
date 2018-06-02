@@ -122,4 +122,20 @@ public class ImageShare implements Serializable{
     public void setLoveNumber(int loveNumber) {
         this.loveNumber = loveNumber;
     }
+
+    @Override
+    public String toString() {
+        return "ImageShare{" +
+                "id=" + id +
+                ", userID=" + userID +
+                ", image='" + image + '\'' +
+                ", category='" + category + '\'' +
+                ", shootTime=" + shootTime +
+                ", cameraModel='" + cameraModel + '\'' +
+                ", cameraParam='" + cameraParam + '\'' +
+                ", description='" + description + '\'' +
+                ", releaseTime=" + releaseTime +
+                ", loveNumber=" + loveNumber +
+                '}';
+    }
 }
