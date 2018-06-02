@@ -58,4 +58,15 @@ public class Invitation implements Serializable{
     public void setLoveNumber(int loveNumber) {
         this.loveNumber = loveNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Invitation{" +
+                "id=" + id +
+                ", userID=" + userID +
+                ", content='" + content + '\'' +
+                ", releaseTime=" + releaseTime +
+                ", loveNumber=" + loveNumber +
+                '}';
+    }
 }
