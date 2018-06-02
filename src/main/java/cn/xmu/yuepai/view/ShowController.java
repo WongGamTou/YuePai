@@ -6,6 +6,7 @@ import cn.xmu.yuepai.entity.Invitation;
 import cn.xmu.yuepai.entity.User;
 import cn.xmu.yuepai.service.ShowService;
 import cn.xmu.yuepai.service.UserService;
+import cn.xmu.yuepai.view.vo.UserInvitationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,14 +55,18 @@ public class ShowController {
     }
 
     @RequestMapping(value = "/{userID}/invitation/attention", method = GET)
-    public List<Invitation> getAttentionInvitation(@PathVariable("userID") int userID){
+    public List<UserInvitationVO> getAttentionInvitation(@PathVariable("userID") int userID){
         List<User> follows = userService.getFollowersByUserId(userID);
-        List<Invitation> invitations = new ArrayList<Invitation>();
+        List<UserInvitationVO> userInvitationVOS = new ArrayList<UserInvitationVO>();
         for (User user : follows) {
             List<Invitation> temp = showService.getInvitationsByUserId(user.getId());
-            invitations.addAll(temp);
+            for (Invitation invitation : temp) {
+                UserInvitationVO userInvitationVO = new UserInvitationVO(user.getName(), user.getUserImage(),
+                        invitation.getContent(), invitation.getReleaseTime(), invitation.getLoveNumber());
+                userInvitationVOS.add(userInvitationVO);
+            }
         }
-        return invitations;
+        return userInvitationVOS;
     }
 
 }
