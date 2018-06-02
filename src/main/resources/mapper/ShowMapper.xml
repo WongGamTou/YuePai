@@ -30,7 +30,7 @@
 
     <select id="getImagesByUserId" parameterType="int" resultMap="imageResultMap" >
         select ID, userID, image, category, shootTime, cameraModel, cameraParam, description, releaseTime, loveNumber
-        from imageShare where ID = #{userId}
+        from imageShare where userID = #{userId}
     </select>
 
     <select id="getInvitationByInvitationId" parameterType="int" resultMap="invitationResultMap">
@@ -40,7 +40,7 @@
 
     <select id="getInvitationsByUserId" parameterType="int" resultMap="invitationResultMap">
         select ID, userID, content, releaseTime, loveNumber
-        from invitation where ID = #{userId}
+        from invitation where userID = #{userId}
     </select>
 
 </mapper>

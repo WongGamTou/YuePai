@@ -127,7 +127,7 @@ public class UserController {
      * @param otherUserID
      * @return
      */
-    @RequestMapping(value = "/{userID}/adduser/{otheruserID}", method = POST)
+    @RequestMapping(value = "/{userID}/adduser/{otherUserID}", method = POST)
     public void addAttention(@PathVariable("userID") int userID,
                              @PathVariable("otherUserID") int otherUserID) {
         userService.addFollow(otherUserID, userID);
