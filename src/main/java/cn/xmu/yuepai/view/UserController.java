@@ -10,13 +10,13 @@ import cn.xmu.yuepai.view.vo.UserInvitationVO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.activemq.ActiveMQConnection;
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
+import javax.jms.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,22 +67,23 @@ public class UserController {
             System.out.println("UserId:"+userId);
             User user = userService.getUserByName((String)user_temp.get("userName"));
             List<User> follows = userService.getFollowersByUserId(user.getId());
-
-            /*for (int i=0; i<follows.size(); i++) {
+            for (int i=0; i<follows.size(); i++) {
                 connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEURL);
                 Connection connection = connectionFactory.createConnection();       //通过连接工厂获取连接
                 connection.setClientID((String)user_temp.get("userName") + i);
+                System.out.println("Username:"+(String)user_temp.get("userName"));
                 connection.start();        //启动连接
 
                 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);//创建session
 
-                Topic topicImage = session.createTopic(follows.get(i).getName() + "Image");
-                Topic topicInvitation = session.createTopic(follows.get(i).getName() + "Invitation");
+                Destination topicImage = session.createTopic(follows.get(i).getName() + "Image");
+                System.out.println("Listen ImageTopicName:"+follows.get(i).getName() + "Image");
+                Destination topicInvitation = session.createTopic(follows.get(i).getName() + "Invitation");
+                System.out.println("Listen InvitationTopicName:"+follows.get(i).getName() + "Invitation");
 
                 //创建消息消费者
-                MessageConsumer consumerImage = session.createDurableConsumer(topicImage, (String)user_temp.get("userName") + "Image"+i);
-
-                MessageConsumer consumerInvitation = session.createDurableConsumer(topicInvitation, (String)user_temp.get("userName") + "Invitation" + i);
+                MessageConsumer consumerImage = session.createConsumer(topicImage,(String)user_temp.get("userName") + "Image" + i);
+                MessageConsumer consumerInvitation = session.createConsumer(topicInvitation, (String)user_temp.get("userName") + "Invitation" + i);
 
                 consumerImage.setMessageListener(message -> {
                     try {
@@ -99,10 +100,12 @@ public class UserController {
                         e.printStackTrace();
                     }
                 });
-            }*/
+
+            }
         }
         return returnMessage;
     }
+
 
 
     /**

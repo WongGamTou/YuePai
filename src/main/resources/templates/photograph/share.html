@@ -8,6 +8,9 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../static/css/styles.css">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src ="/static/js/share.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-fixed-top bs-docs-nav">
@@ -20,8 +23,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" onclick=jumppublish(localStorage.getItem("userId"))><img class="logo"
-                                                                                             src="../../static/img/logo.png"></a>
+            <a class="navbar-brand" onclick=jumppublish(localStorage.getItem("userId"))><img class="logo" src="../../static/img/logo.png"></a>
         </div>
         <div class="col-lg-4">
             <div class="input-group">
@@ -52,12 +54,13 @@
     <!-- Nav tabs -->
     <div class="nav-tabslist">
         <ul class="nav nav-pills center-block two-pills" role="tablist">
-            <li role="presentation" clasref="#follow" data-toggle="tab">关注<span class="badge">3</span></a></li>
+            <li role="presentation" class="active"><a href="#recommend" data-toggle="tab">推荐</a></li>
+            <li role="presentation"><a href="#follow" data-toggle="tab">关注<span class="badge">1</span></a></li>
         </ul>
-    </div>s="active"><a href="#recommend" data-toggle="tab">推荐</a></li>
-            <li role="presentation"><a h
-    <!-- Tab panes -->
+    </div>
+
     <div class="tab-content col-lg-12">
+        <!--推荐模块-->
         <div role="tabpanel" class="tab-pane fade in active" id="recommend">
             <div class="row">
                 <div class="col-sm-6 col-md-4">
@@ -124,48 +127,58 @@
                 </div>
             </div>
         </div>
+        <!--关注模块-->
         <div role="tabpanel" class="tab-pane" id="follow">
-            <div class="row" id="getfollow">
-
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img1.png" alt="...">
-                        <div class="caption">
-                            <h3>匪我思存</h3>
-                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
-                            <p class="card-icon like">&#10084;</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img2.png" alt="...">
-                        <div class="caption">
-                            <h3>匪我思存</h3>
-                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
-                            <p class="card-icon like">&#10084;</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img data-toggle="modal" data-target="#myModal" src="../../static/img/img3.png" alt="...">
-                        <div class="caption">
-                            <h3>匪我思存</h3>
-                            <p>一只可爱小猫咪的艺术照哈哈哈</p>
-                            <p class="card-icon like">&#10084;</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
     </div>
+    <script type="text/javascript">
+        var userId = localStorage.getItem("userId");
+        $(function(){
+                $.ajax({
+            type:'GET',
+            url: '/' + userId + '/imageshare/attention',
+            data:'',
+            contentType:'application/json;charset=utf-8',
+            dataType:'json',
+            success:function(result){
+                var rowcount=result.length/3-1;
+                var j=0;
+                for(i=0;i<rowcount;i++){
+                    var newrow='<div class="row">';
+                    for(j=0;j<3;j++){
 
+                        newrow+='<div class="col-sm-6 col-md-4">'+
+                                 '<div class="thumbnail">'+
+                                 '<img data-toggle="modal"  data-target="#myModal" src="'+result[3*i+j].image+ ' " alt="...">'+
+                                 '<div class="caption">'+
+                                 '<h3>'+result[3*i+j].userName+'</h3>'+
+                                 '<p>'+result[3*i+j].description+'</p>'+
+                                 '<p class="card-icon like">&#10084;</p>'+
+                                 '</div>'+'</div>'+'</div>';
+                    }
+                    newrow+='</div>';
+                    $("#follow").append(newrow);
+                }
+                var newrow2='<div class="row">';
+                for(j=3*i;j<result.length;j++){
+
+                    newrow2+='<div class="col-sm-6 col-md-4">'+
+                            '<div class="thumbnail">'+
+                            '<img data-toggle="modal" data-target="#myModal" src=" '+result[j].image+ '" alt="...">'+
+                            '<div class="caption">'+
+                            '<h3>'+result[j].userName+'</h3>'+
+                            '<p>'+result[j].description+'</p>'+
+                            '<p class="card-icon like">&#10084;</p>'+
+                            '</div>'+'</div>'+'</div>';
+                }
+                newrow2+='</div>';
+                $("#follow").append(newrow2);
+            }
+        });
+        })
+    </script>
     <!-- 模态框（Modal） -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog share-dialog">
@@ -176,17 +189,17 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <img class="photograph" src="../../static/img/img2.png" alt="...">
+                            <img class="photograph" src="../../static/img/img3.png" alt="...">
                         </div>
                         <div class="col-lg-4">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <img class="img-circle" src="../../static/img/img3.png"
+                                    <img class="img-circle" src="../../static/img/profile2.png"
                                          alt="Generic placeholder image">
                                 </div>
                                 <div class="col-lg-4">
-                                    <p class="name">匪我思存</p>
-                                    <span>2</span><span>名关注者</span>
+                                    <p class="name">dwy</p>
+                                    <span>1</span><span>名关注者</span>
                                 </div>
                                 <div class="col-lg-4">
                                     <button type="button" class="btn btn-default attention">已关注</button>
@@ -195,12 +208,12 @@
                             <div class="row modal-icons">
                                 <div class="col-lg-6">
                                     <span class="card-icon left like">&#10084;</span>
-                                    <span>126</span>
+                                    <span>2</span>
                                 </div>
                                 <div class="col-lg-6">
                                     <embed src="../../static/img/comment.svg" width="20" height="20"
                                            type="image/svg+xml"/>
-                                    <span>243</span>
+                                    <span>0</span>
                                 </div>
 
                             </div>
@@ -215,7 +228,7 @@
                                     拍摄时间
                                 </dt>
                                 <dd>
-                                    2018/5/31
+                                    2017/5/12
                                 </dd>
                                 <dt>
                                     相机型号
@@ -233,7 +246,7 @@
                                     图片描述
                                 </dt>
                                 <dd>
-                                    天气好好，出门拍个照balabala...
+                                    分享一个妹纸的背影~
                                 </dd>
                             </dl>
 
@@ -247,8 +260,6 @@
     </div>
 
 </div> <!-- /container -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
     $(function () {
         $(".like").click(function () {
