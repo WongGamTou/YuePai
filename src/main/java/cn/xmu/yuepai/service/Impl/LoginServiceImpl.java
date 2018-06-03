@@ -13,21 +13,25 @@ public class LoginServiceImpl implements LoginService {
     UserMapper userMapper;
 
     @Override
-    public int login(String name, String password) {
-        User user = userMapper.getUserByName(name);
+    public int login(String userName, String password) {
+        User user = userMapper.getUserByName(userName);
         if (user == null) {
-            return 0;
+            return -1;
         }
         else {
             if (!user.getPassword().equals(password)) {
-                return 0;
+                return user.getId();
             }
         }
-        return 1;
+        return user.getId();
     }
 
     @Override
     public int register(User user) {
-        return userMapper.insertUser(user);
+
+        if (userMapper.insertUser(user) > 0)
+            return user.getId();
+        else
+            return -1;
     }
 }

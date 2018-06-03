@@ -7,11 +7,11 @@ import cn.xmu.yuepai.service.LoginService;
 import cn.xmu.yuepai.service.ShowService;
 import cn.xmu.yuepai.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +22,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import static org.springframework.web.bind.annotation.RequestMethod.*;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 public class UserController {
@@ -45,18 +46,21 @@ public class UserController {
     private ConnectionFactory connectionFactory;
 
     /**
-     * 登陆
+     * 登录
      */
     @RequestMapping(value = "/login", method = POST)
-    public void login(HttpServletRequest httpServletRequest) throws IOException, JMSException {
+    public ObjectNode login(HttpServletRequest httpServletRequest) throws IOException, JMSException {
         BufferedReader br = httpServletRequest.getReader();
         String str, wholeStr = "";
         while((str = br.readLine()) != null){
             wholeStr += str;
         }
         Map<String , Object> user_temp = new ObjectMapper().readValue(wholeStr, Map.class);
-        if(loginService.login((String)user_temp.get("userName"), (String )user_temp.get("password")) == 1) {
-
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode returnMessage = mapper.createObjectNode();
+        int userId = loginService.login((String) user_temp.get("userName"), (String) user_temp.get("password"));
+        if (userId >= 0) {
+            returnMessage.put("userId", userId);
             User user = userService.getUserByName((String)user_temp.get("userName"));
             List<User> follows = userService.getFollowersByUserId(user.getId());
             for (int i=0; i<follows.size(); i++) {
@@ -92,6 +96,7 @@ public class UserController {
                 });
             }
         }
+        return returnMessage;
     }
 
     /**
