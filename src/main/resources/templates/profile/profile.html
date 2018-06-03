@@ -55,7 +55,7 @@
         <div class="col-md-12 column">
             <div class="row clearfix">
                 <div class="col-md-2 column">
-                    <img class="img-circle" alt="140x140" src="../../static/img/img4.png"/>
+                    <img id="userImage" class="img-circle" alt="140x140" src=""/>
                 </div>
                 <div class="col-md-6 column">
                     <div class="row clearfix">
@@ -144,6 +144,7 @@
             dataType:'json',
             contentType:'',
             success:function(result){
+                document.getElementById('userImage').src = result.userImage;
                 $("#username").text(result.username);
                 $("#numOfActivity").text(result.numOfActivity);
                 $("#numOfFans").text(result.numOfFans);
@@ -165,7 +166,7 @@
 
                         newrow+='<div class="col-sm-6 col-md-4">'+
                                  '<div class="thumbnail">'+
-                                 '<img data-toggle="modal"  src="../../static/img/img1.png" alt="...">'+
+                            '<img data-toggle="modal" src=' + result[3 * i + j].image + ' alt="...">' +
                                  '<div class="caption">'+
                                  '<p>'+result[3*i+j].description+'</p>'+
                                  '</div>'+'</div>'+'</div>';
@@ -178,7 +179,7 @@
 
                     newrow2+='<div class="col-sm-6 col-md-4">'+
                             '<div class="thumbnail">'+
-                            '<img data-toggle="modal"  src="../../static/img/img1.png" alt="...">'+
+                        '<img data-toggle="modal" src=' + result[j].image + ' alt="...">' +
                             '<div class="caption">'+
                             '<p>'+result[j].description+'</p>'+
                             '</div>'+'</div>'+'</div>';
@@ -201,7 +202,7 @@
                         '<div class="col-md-12 column">'+
                         '<div class="row clearfix">'+
                         '<div class="col-md-1 column">'+
-                        '<img class="img-circle" alt="140x140" src="../../static/img/img2.png"/>'+
+                        '<img class="img-circle" alt="140x140" src=' + data[i].userImage + '/>' +
                         '</div>'+
                         '<div class="col-md-2 column">'+
                         '<p class="panel-name">'+data[i].userName+

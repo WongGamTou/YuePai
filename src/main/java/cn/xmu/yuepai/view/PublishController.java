@@ -7,10 +7,12 @@ import cn.xmu.yuepai.entity.User;
 import cn.xmu.yuepai.service.PostService;
 import cn.xmu.yuepai.service.ShowService;
 import cn.xmu.yuepai.service.UserService;
+import cn.xmu.yuepai.util.FileUtil;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.jms.*;
 import java.text.ParsePosition;
@@ -39,6 +41,20 @@ public class PublishController {
     @Autowired
     private ConnectionFactory connectionFactory;
 
+    @RequestMapping(value = "/{userId}/upload", method = POST)
+    public String uploadImage(@RequestParam("img") MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+        String filePath = "src/main/resources/static/img/";
+        try {
+            FileUtil.uploadFile(file.getBytes(), filePath, fileName);
+        } catch (Exception e) {
+
+            // TODO: handle exception
+
+        }
+        return "/static/img/" + fileName;
+    }
     /**
      * 发布摄影分享，新建username+"Image"的topic
      * @param userID
