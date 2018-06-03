@@ -1,31 +1,30 @@
 // ------- support functions ---------------
-function updateCookie(name, value) {
-    document.cookie = name + "=" + value;
-}
-
-function getCookie(name) {
-    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
-    if (arr != null) return unescape(arr[2]); return null;
-}
-
 function jumpphoto(cid) {
-    updateCookie("userId", cid);
     window.location.href = '/' + cid + '/photo';
 }
+
+function jumpshare(cid) {
+    window.location.href = '/' + cid + '/share';
+}
+
+function jumpprofile(cid) {
+    window.location.href = '/' + cid + '/profile';
+}
+
 
 // -------- photo page ---------------
 
 function followphotolist() {
     $.ajax({
         type:'get',
-        url:'/' + getCookie("userId") + '/invitation/attention',
+        url:'/' + localStorage.getItem("userId") + '/invitation/attention',
         dataType: "json",
         contentType: "application/json;",
         success: function (invitation, textStatus, xhr) {
             if(xhr.status == 200) {
                 var content = document.getElementById("getfollow");
                 var str = "";
-                for(var i=0; i<data.length; i++) {
+                for(var i=0; i<invitation.length; i++) {
                     str += "<div class=\"panel panel-default\">\n" +
                         "                <div class=\"panel-body\">\n" +
                         "                    <div class=\"row clearfix\">\n" +
