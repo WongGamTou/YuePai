@@ -10,7 +10,7 @@ public class PageController {
      * 登陆
      * @return
      */
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/index")
     public String login() {
         return "common/login";
     }
@@ -19,7 +19,7 @@ public class PageController {
      * 注册
      * @return
      */
-    @RequestMapping(value = "/register")
+    @RequestMapping(value = "/")
     public String register() {
         return "common/login";
     }
