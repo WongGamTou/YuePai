@@ -1,6 +1,5 @@
 /*------------------------------Login---------------------------------*/
-$(function () {
-    $("#login").click(function () {
+function login() {
         var data = {userName: $("#loginUsername").val(), password: $("#loginPassword").val()}
         $.ajax({
             type: 'post',
@@ -20,11 +19,9 @@ $(function () {
                 }
             }
         });
-    });
-});
+};
 /*------------------------Register---------------------------------*/
-$(function () {
-    $("#register").click(function () {
+function register() {
         var password = $("#registerPassword").val()
         var confirmPassword = $("#registerConfirmPassword").val()
         if (password == confirmPassword) {
@@ -35,7 +32,7 @@ $(function () {
             }
             $.ajax({
                 type: 'post',
-                url: '/login',
+                url: '/register',
                 dataType: "json",
                 data: JSON.stringify(data),
                 contentType: "application/json",
@@ -56,5 +53,4 @@ $(function () {
             $("#registerPassword").val('')
 
         }
-    });
-});
+}

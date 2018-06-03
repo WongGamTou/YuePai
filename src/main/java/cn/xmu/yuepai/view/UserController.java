@@ -108,7 +108,7 @@ public class UserController {
      * 注册
      */
     @RequestMapping(value = "/register", method = POST)
-    public void register(HttpServletRequest httpServletRequest) throws IOException {
+    public int register(HttpServletRequest httpServletRequest) throws IOException {
         BufferedReader br = httpServletRequest.getReader();
         String str, wholeStr = "";
         while((str = br.readLine()) != null){
@@ -116,7 +116,7 @@ public class UserController {
         }
         Map<String , Object> user_temp = new ObjectMapper().readValue(wholeStr, Map.class);
         User user = new User(user_temp);
-        loginService.register(user);
+        return loginService.register(user);
     }
 
     /**
