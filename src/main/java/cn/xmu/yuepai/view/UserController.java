@@ -67,23 +67,23 @@ public class UserController {
             System.out.println("UserId:"+userId);
             User user = userService.getUserByName((String)user_temp.get("userName"));
             List<User> follows = userService.getFollowersByUserId(user.getId());
-            for (int i = 0; i < follows.size(); i++) {
+            for (int i=0; i<follows.size(); i++) {
                 connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEURL);
                 Connection connection = connectionFactory.createConnection();       //通过连接工厂获取连接
                 connection.setClientID((String)user_temp.get("userName") + i);
-                System.out.println("Username:" + (String) user_temp.get("userName"));
+                System.out.println("Username:"+(String)user_temp.get("userName"));
                 connection.start();        //启动连接
 
                 Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);//创建session
 
                 Destination topicImage = session.createTopic(follows.get(i).getName() + "Image");
-                System.out.println("Listen ImageTopicName:" + follows.get(i).getName() + "Image");
+                System.out.println("Listen ImageTopicName:"+follows.get(i).getName() + "Image");
                 Destination topicInvitation = session.createTopic(follows.get(i).getName() + "Invitation");
-                System.out.println("Listen InvitationTopicName:" + follows.get(i).getName() + "Invitation");
+                System.out.println("Listen InvitationTopicName:"+follows.get(i).getName() + "Invitation");
 
                 //创建消息消费者
-                MessageConsumer consumerImage = session.createConsumer(topicImage, (String) user_temp.get("userName") + "Image" + i);
-                MessageConsumer consumerInvitation = session.createConsumer(topicInvitation, (String) user_temp.get("userName") + "Invitation" + i);
+                MessageConsumer consumerImage = session.createConsumer(topicImage,(String)user_temp.get("userName") + "Image" + i);
+                MessageConsumer consumerInvitation = session.createConsumer(topicInvitation, (String)user_temp.get("userName") + "Invitation" + i);
 
                 consumerImage.setMessageListener(message -> {
                     try {
@@ -105,6 +105,7 @@ public class UserController {
         }
         return returnMessage;
     }
+
 
 
     /**

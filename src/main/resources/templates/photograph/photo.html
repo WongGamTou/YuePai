@@ -8,6 +8,9 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../static/css/styles.css">
+    <script src ="/static/js/photo.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/static/js/photo.js"></script>
 </head>
 <body>
@@ -21,8 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" onclick=jumppublish(localStorage.getItem("userId"))><img class="logo"
-                                                                                             src="../../static/img/logo.png"></a>
+            <a class="navbar-brand" onclick=jumppublish(localStorage.getItem("userId"))><img class="logo" src="../../static/img/logo.png"></a>
         </div>
         <div class="col-lg-4">
             <div class="input-group">
@@ -52,10 +54,11 @@
     <div class="nav-tabslist">
         <ul class="nav nav-pills center-block two-pills" role="tablist">
             <li role="presentation" class="active"><a href="#recommend" data-toggle="tab">推荐</a></li>
-            <li role="presentation"><a href="#follow" data-toggle="tab">关注<span class="badge">3</span></a></li>
+            <li role="presentation"><a href="#follow" data-toggle="tab">关注<span class="badge">1</span></a></li>
         </ul>
     </div>
     <div class="tab-content col-lg-12">
+        <!--推荐模块-->
         <div role="tabpanel" class="tab-pane fade in active" id="recommend">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -159,69 +162,57 @@
                 </div>
             </div>
         </div>
-        <!--tabpanel-->
+        <!--关注模块-->
         <div role="tabpanel" class="tab-pane" id="follow">
-            <!--<div class="panel panel-detault" id="getfollow">-->
-
-            <!--</div>>-->
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row clearfix">
-                        <div class="col-md-12 column">
-                            <div class="row clearfix">
-                                <div class="col-md-1 column">
-                                    <img class="img-circle" alt="140x140" src="../../static/img/img2.png"/>
-                                </div>
-                                <div class="col-md-2 column">
-                                    <p class="panel-name">
-                                        匪我思存
-                                    </p>
-                                    <span class="panel-time">2天前</span>
-                                </div>
-                                <div class="col-md-9 column">
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-1 column">
-                                </div>
-                                <div class="col-md-11 column">
-                                    <p class="panel-content">
-                                        <em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong>
-                                        编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在
-                                        <small>Ruby</small>
-                                        社区中。是一个分布式的版本控制系统
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <div class="row clearfix">
-                        <div class="col-md-4 column footer-icons">
-                            <img class="navbar-icons" src="../../static/img/share.png" alt="...">
-                            转发
-                        </div>
-                        <div class="col-md-4 column footer-icons">
-                            <img class="navbar-icons" src="../../static/img/comment.png" alt="...">
-                            评论
-                        </div>
-                        <div class="col-md-4 column footer-icons">
-                            <span class="card-icon left like">&#10084;</span>
-                            <span>126</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
 </div>
 
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script  type="text/javascript">
+    var userId = localStorage.getItem("userId");
+    $(function(){
+            $.ajax({
+            type:'GET',
+            url: '/' + userId + '/invitation/attention',
+            data:'',
+            contentType:'application/json;charset=utf-8',
+            success:function(data){
+                for(i=0;i<data.length;i++){
+                    $("#follow").append(
+                        '<div class="panel panel-default">'+
+                        '<div class="panel-body">'+
+                        '<div class="row clearfix">'+
+                        '<div class="col-md-12 column">'+
+                        '<div class="row clearfix">'+
+                        '<div class="col-md-1 column">'+
+                        '<img class="img-circle" alt="140x140" src="../../static/img/img2.png"/>'+
+                        '</div>'+
+                        '<div class="col-md-2 column">'+
+                        '<p class="panel-name">'+data[i].userName+
+                         '</p> <span class="panel-time"> '+data[i].releaseTime+'</span> </div>'+
+                         '<div class="col-md-9 column"> </div></div>'+
+                         '<div class="row clearfix">'+
+                         '<div class="col-md-1 column"> </div>'+
+                         '<div class="col-md-11 column">'+
+                         '<p class="panel-content">'+data[i].content+'</p></div></div></div></div></div>'+
+                         '<div class="panel-footer">'+
+                         '<div class="row clearfix">'+
+                         '<div class="col-md-4 column footer-icons">'+
+                         '<img class="navbar-icons" src="../../static/img/share.png" alt="...">转发</div>'+
+                         '<div class="col-md-4 column footer-icons">'+
+                         '<img class="navbar-icons" src="../../static/img/comment.png" alt="...">评论</div>'+
+                         '<div class="col-md-4 column footer-icons">'+
+                         '<span class="card-icon left like">&#10084;</span>'+
+                         '<span>'+data[i].loveNumber+'</span></div></div></div></div>'
+                    );
+                }
+
+            }
+        });
+    })
+</script>
+
 <script>
     $(function () {
         $(".like").click(function () {

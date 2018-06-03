@@ -6,6 +6,7 @@ import cn.xmu.yuepai.entity.Invitation;
 import cn.xmu.yuepai.entity.User;
 import cn.xmu.yuepai.service.ShowService;
 import cn.xmu.yuepai.service.UserService;
+import cn.xmu.yuepai.view.vo.UserImageVO;
 import cn.xmu.yuepai.view.vo.UserInvitationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,14 +33,17 @@ public class ShowController {
     }
 
     @RequestMapping(value = "/{userID}/imageshare/attention", method = GET)
-    public List<ImageShare> getAttentionImageShare(@PathVariable("userID") int userID){
+    public List<UserImageVO> getAttentionImageShare(@PathVariable("userID") int userID){
         List<User> follows = userService.getFollowersByUserId(userID);
-        List<ImageShare> imageShares = new ArrayList<ImageShare>();
+        List<UserImageVO> images= new ArrayList<>();
         for (User user : follows) {
             List<ImageShare> temp = showService.getImagesByUserId(user.getId());
-            imageShares.addAll(temp);
+            for(ImageShare image:temp){
+                UserImageVO imageVO=new UserImageVO(image.getId(),user.getName(),image.getDescription(),image.getImage());
+                images.add(imageVO);
+            }
         }
-        return imageShares;
+        return images;
     }
 
     @RequestMapping(value = "/{userID}/imageshare/{imageshreaID}/details", method = GET)
