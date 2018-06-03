@@ -6,24 +6,27 @@ import cn.xmu.yuepai.entity.User;
 import cn.xmu.yuepai.service.LoginService;
 import cn.xmu.yuepai.service.ShowService;
 import cn.xmu.yuepai.service.UserService;
+import cn.xmu.yuepai.view.vo.UserInvitationVO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.activemq.ActiveMQConnection;
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
+import javax.jms.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class UserController {
@@ -61,9 +64,10 @@ public class UserController {
         int userId = loginService.login((String) user_temp.get("userName"), (String) user_temp.get("password"));
         if (userId >= 0) {
             returnMessage.put("userId", userId);
+            System.out.println("UserId:"+userId);
             User user = userService.getUserByName((String)user_temp.get("userName"));
             List<User> follows = userService.getFollowersByUserId(user.getId());
-            /*for (int i=0; i<follows.size(); i++) {
+            for (int i=0; i<follows.size(); i++) {
                 connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEURL);
                 Connection connection = connectionFactory.createConnection();       //通过连接工厂获取连接
                 connection.setClientID((String)user_temp.get("userName") + i);
@@ -75,7 +79,7 @@ public class UserController {
                 Topic topicInvitation = session.createTopic(follows.get(i).getName() + "Invitation");
 
                 //创建消息消费者
-                MessageConsumer consumerImage = session.createDurableConsumer(topicImage, (String)user_temp.get("userName") + i);
+                MessageConsumer consumerImage = session.createDurableConsumer(topicImage, (String)user_temp.get("userName") + "Image"+i);
 
                 MessageConsumer consumerInvitation = session.createDurableConsumer(topicInvitation, (String)user_temp.get("userName") + "Invitation" + i);
 
@@ -94,10 +98,11 @@ public class UserController {
                         e.printStackTrace();
                     }
                 });
-            }*/
+            }
         }
         return returnMessage;
     }
+
 
     /**
      * 注册
@@ -158,7 +163,7 @@ public class UserController {
      */
     @RequestMapping(value = "/{userID}/otheruser/{otherUserID}/invitation", method = GET)
     public List<Invitation> getOtherUserInvitation(@PathVariable("userID") int userID,
-                                              @PathVariable("otherUserID") int otherUserID) {
+                                                   @PathVariable("otherUserID") int otherUserID) {
         return showService.getInvitationsByUserId(otherUserID);
     }
 
@@ -173,13 +178,20 @@ public class UserController {
     }
 
     /**
-     * 获取我的约拍
+     * 获取我的主页的约拍
      * @param userID
      * @return
      */
     @RequestMapping(value = "/{userID}/homepage/invitation", method = GET)
-    public List<Invitation> getMyInvitation(@PathVariable("userID") int userID) {
-        return showService.getInvitationsByUserId(userID);
+    public List<UserInvitationVO> getMyInvitation(@PathVariable("userID") int userID) {
+        List<Invitation> tmp=showService.getInvitationsByUserId(userID);
+        List<UserInvitationVO> invitations=new ArrayList<>();
+        User user=userService.getUserById(userID);
+        for(Invitation i:tmp){
+            UserInvitationVO j=new UserInvitationVO(user.getName(),user.getUserImage(),i.getContent(),i.getReleaseTime(),i.getLoveNumber());
+            invitations.add(j);
+        }
+        return invitations;
     }
 
     /**
@@ -189,5 +201,22 @@ public class UserController {
     @RequestMapping(value = "/{userID}/homepage/notice", method = GET)
     public void getNotice(@PathVariable("userID") int userID) {
 
+    }
+
+    @RequestMapping(value="/{userID}/homepage",method=GET)
+    public Map getUserInfo(@PathVariable("userID") int userID){
+        User me=userService.getUserById(userID);
+        String username=me.getName();
+        String userImage=me.getUserImage();
+        int numOfActivity=userService.getPostNumberByUserId(userID);
+        int numOfFans=userService.getFansByUserId(userID).size();
+        int numOfBlogger=userService.getFollowersByUserId(userID).size();
+        Map<String,String> map=new HashMap<String, String>();
+        map.put("username",username);
+        map.put("userImage",userImage);
+        map.put("numOfActivity",""+numOfActivity);
+        map.put("numOfFans",""+numOfFans);
+        map.put("numOfBlogger",""+numOfBlogger);
+        return map;
     }
 }
