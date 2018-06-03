@@ -11,6 +11,9 @@ function jumpprofile(cid) {
     window.location.href = '/' + cid + '/profile';
 }
 
+function jumppublish(cid) {
+    window.location.href = '/' + cid + '/publish';
+}
 
 // -------- photo page ---------------
 

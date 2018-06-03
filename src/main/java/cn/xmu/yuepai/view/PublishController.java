@@ -7,16 +7,12 @@ import cn.xmu.yuepai.entity.User;
 import cn.xmu.yuepai.service.PostService;
 import cn.xmu.yuepai.service.ShowService;
 import cn.xmu.yuepai.service.UserService;
-import com.sun.imageio.plugins.common.ImageUtil;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.jms.*;
-
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -107,7 +103,8 @@ public class PublishController {
      * @return Invitation
      */
     @RequestMapping(value = "/{userID}/invitation/publish", method = POST)
-    public Invitation publishInvitation(@PathVariable("userID") int userID,@RequestBody Invitation invitation){
+    public @ResponseBody
+    Invitation publishInvitation(@PathVariable("userID") int userID, @RequestBody Invitation invitation) {
         invitation.setUserID(userID);
         int newID=postService.addInvitation(invitation);
         System.out.println("插入数据库后invitationID："+newID);

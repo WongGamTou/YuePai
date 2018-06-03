@@ -8,6 +8,7 @@
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../../static/css/styles.css">
+    <script src="/static/js/common.js"></script>
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -22,7 +23,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../photograph/publish.html"><img class="logo" src="../../static/img/logo.png"></a>
+            <a class="navbar-brand" onclick=jumppublish(localStorage.getItem("userId"))><img class="logo"
+                                                                                             src="../../static/img/logo.png"></a>
         </div>
         <div class="col-lg-4">
             <div class="input-group">
@@ -35,13 +37,13 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="navbar-brand" href="../photograph/share.html">
+                <li><a class="navbar-brand" onclick=jumpshare(localStorage.getItem("userId"))>
                     <img class="navbar-icons" src="../../static/img/explore.png" alt="...">
                 </a></li>
-                <li><a class="navbar-brand" href="../photograph/photo.html">
+                <li><a class="navbar-brand" onclick=jumpphoto(localStorage.getItem("userId"))>
                     <img class="navbar-icons" src="../../static/img/photo.png" alt="...">
                 </a></li>
-                <li class="active"><a class="navbar-brand" href="../profile/profileUsers.html">
+                <li class="active"><a class="navbar-brand" onclick=jumpprofile(localStorage.getItem("userId"))>
                     <img class="navbar-icons" src="../../static/img/user.png" alt="...">
                 </a></li>
             </ul>
@@ -140,7 +142,7 @@
     $(function(){
         $.ajax({
             type:'GET',
-            url:'/'+userID+'/homepage',
+            url: '/' + userId + '/homepage',
             data:'',
             dataType:'json',
             contentType:'',
@@ -153,7 +155,7 @@
         });
         $.ajax({
             type:'GET',
-            url:'/'+userID+'/homepage/imageshare',
+            url: '/' + userId + '/homepage/imageshare',
             data:'',
             contentType:'application/json;charset=utf-8',
             dataType:'json',
@@ -190,7 +192,7 @@
         });
         $.ajax({
             type:'GET',
-            url:'/'+userID+'/homepage/invitation',
+            url: '/' + userId + '/homepage/invitation',
             data:'',
             contentType:'application/json;charset=utf-8',
             success:function(data){
